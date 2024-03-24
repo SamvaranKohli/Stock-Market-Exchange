@@ -5,7 +5,7 @@ socket.on('update', (data) => {
     const id = data.documentKey._id;
     const updatedValue = data.updateDescription.updatedFields;
     const stockDiv = document.getElementById(id);
-
+    
     const stock_ = stocksData.find(stock => stock._id === id);
     UpdateMarketDepthElement(stockDiv, updatedValue, stock_);
   });
