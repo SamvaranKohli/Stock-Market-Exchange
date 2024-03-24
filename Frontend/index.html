@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Exchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img class="logo" src="logo.png"></img>
+    <div class="container">
+        <div class="left-half">
+            <div id="stock-container"></div>
+
+            <div id="order-container" class="order-container">
+                <div id="order-top" class="order-top">RELIANCE</div>
+                <div class="qty-price-input">
+                    <div class="qty">
+                        <label class="qty-label" for="id">Qty.</label>
+                        <input class="qty-input", type="text" id="qty-input" name="qty", value="1">
+                    </div>
+                    <div class="price">
+                        <label class="price-label" for="id">Price</label>
+                        <input class="price-input", type="text" id="price-input" name="price", value="1001.20" disabled>
+                    </div>
+                </div>
+                <div class="order-type">
+                    <input type="radio" name="order_type", id="market" value="market" onclick="disablePriceInput()" checked>
+                    <label>Market</label>
+        
+                    <input type="radio" name="order_type", id="limit" value="limit" onclick="enablePriceInput()">
+                    <label>Limit</label>
+                </div>
+                <div class="order-bottom">
+                    <button id="order-complete-button" class="order-complete-button">BUY</button>
+                    <button class="cancel-button">CANCEL</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-half">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'orders')">ORDERS</button>
+                <button class="tablinks" onclick="openTab(event, 'positions')">POSITIONS</button>
+                <button class="tablinks" onclick="openTab(event, 'account')">ACCOUNT</button>
+            </div>
+            
+            <table id="orders" class="tabcontent">
+                
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Instrument</th>
+                        <th>Quantity</th>
+                        <th>Avg. Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+            
+            <div id="positions" class="tabcontent">
+                <h3>Tab 2 Content</h3>
+                <p>This is the content of tab 2.</p>
+            </div>
+            
+            <div id="account" class="tabcontent">
+                <button onclick="openLoginPage()">LOGIN</button>
+            </div>
+        </div>
+    </div>
+
+    <template id="stock-template">
+        <div class="stock">
+            <div class="stock-header" onclick="toggleMarketDepth()">
+                <div class="stock-name">RELIANCE</div>
+                <div class="stock-prices">
+                    <div class="stock-change">84.5</div>
+                    <div class="stock-percentage">0.38%</div>
+                    <div class="close">&#9650; 22143</div>
+                </div>
+            </div>
+            <div class="market-depth" style="display: none;">
+                <div class="daily-data">
+                    <div class="daily-data-left">
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">open</span>
+                            <span class="open">1001.20</span>
+                        </div>
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">low</span>
+                            <span class="low">990.20</span>
+                        </div>
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">volume</span>
+                            <span class="volume">42,013</span>
+                        </div>
+                        <button class="bs-button bs-button-buy" id="buy">BUY</button>
+                    </div>
+                    <div class="daily-data-right">
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">high</span>
+                            <span class="high">1101.20</span>
+                        </div>
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">prev. close</span>
+                            <span class="prevClose">841.20</span>
+                        </div>
+                        <div class="daily-data-row">
+                            <span class="daily-data-row-name">LTT</span>
+                            <span class="ltt">2024-02-01 13:34:39</span>
+                        </div>
+                        <button class="bs-button bs-button-sell" id="sell">SELL</button>
+                    </div>
+                </div>
+                <div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://127.0.0.1:4000/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    <!-- <script src="websocket-client.js"></script> -->
+</body>
+</html>

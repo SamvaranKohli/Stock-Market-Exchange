@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.root": "/",
+    "liveServer.settings.https": {
+      "enable": true,
+      "cert": "/Users/samvarankohli/Documents/Stock Market Exchange 2/https/localhost.pem",
+      "key": "/Users/samvarankohli/Documents/Stock Market Exchange 2/https/localhost.key",
+      "passphrase": "amazonkindle"
+    }
+}

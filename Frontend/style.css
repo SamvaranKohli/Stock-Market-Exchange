@@ -1,0 +1,328 @@
+:root
+{
+    --topMargin: 110px;
+    --lightGrey: #F1F1F1;
+    --darkGrey: #7c7c7c;
+    --profitGreen: #50b154;
+    --priceChange: #a9a9a9;
+    --bidBlue: #518df4;
+    --bidBlueHover: #76a4f4;
+    --offerRed: #ff5824;
+    --offerRedHover: #ff5724c0;
+}
+
+@font-face {
+    font-family: 'eau sans book'; 
+    src: url('eau_sans_book.ttf') format('ttf');   
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+body
+{
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: 'eau sans book', sans-serif;
+}
+
+.logo
+{
+    width: 300px;
+    margin: 20px;
+}
+
+.container
+{
+    display: flex;
+    /* margin-top: var(--topMargin); */
+    margin-left: 10px;
+    width: 100%;
+}
+
+.left-half
+{
+    height: calc(100vh - var(--topMargin));
+    box-sizing: border-box;
+    position: relative;
+}
+
+.left-half 
+{
+    width: 30%;
+    box-shadow: 0 0 10px var(--lightGrey);
+}
+
+.right-half 
+{
+    width: 70%;
+    margin-left: 5px;
+}
+
+.stock {
+    width: 100%;
+}
+
+.stock-container {
+    width: 100%;
+}
+
+.stock-header {
+    width: 100%;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    background-color: white;
+    border-bottom: 2px solid var(--lightGrey);
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-header:hover 
+{
+    background-color: var(--lightGrey);
+}
+
+.stock-prices {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stock-prices div {
+    padding: 0px 10px;
+}
+
+.stock-change {
+    color: var(--priceChange);
+}
+
+.stock-percentage {
+    color: var(--darkGrey);
+}
+
+.price-green {
+    color : var(--profitGreen);
+}
+
+.price-red {
+    color : var(--offerRed);
+}
+
+.daily-data
+{
+    display: flex;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.daily-data-left
+{
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.daily-data-right
+{
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.daily-data-row
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 10px 3px 10px;
+}
+
+.daily-data-row-name
+{
+    text-align: left;
+    color: var(--darkGrey);
+}
+
+.daily-data-row-value
+{
+    text-align: right;
+    color: black;
+}
+
+.bs-button
+{
+    width: calc(100% - 20px);
+    font-size: 15px;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.bs-button-buy
+{
+    background-color: var(--bidBlue);
+    color: white;
+    border-style: solid;
+    border-color: var(--bidBlue); 
+
+}
+
+.bs-button-buy:hover, .buy-button:hover
+{
+    background-color: var(--bidBlueHover);
+}
+
+.bs-button-sell
+{
+    background-color: var(--offerRed);
+    color: white;
+    border-style: solid;
+    border-color: var(--offerRed); 
+}
+
+.bs-button-sell:hover
+{
+    background-color: var(--offerRedHover);
+}
+
+.order-container {
+    width: 100%; 
+    background-color: #fff;
+    border-radius: 5px;
+    bottom: 0;
+    position: absolute;
+    box-sizing: border-box;
+    display: none;
+}
+
+.order-top
+{
+    width: 100%;
+    background-color: var(--bidBlue);
+    box-sizing: border-box;
+    color: white;
+    padding: 10px;
+}
+
+.qty-price-input
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 50px;
+}
+
+.qty-input, .price-input
+{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 50px;
+}
+
+.order-type
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.order-bottom
+{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.order-complete-button
+{
+    width: 40%;
+    padding: 5px;
+    font-size: 15px;
+    background-color: var(--bidBlue);
+    color: white;
+    border-style: solid;
+    border-color: var(--bidBlue); 
+    cursor: pointer;
+}
+
+.cancel-button
+{
+    width: 40%;
+    padding: 5px;
+    font-size: 15px;
+    background-color: white;
+}
+
+.tab {
+    overflow: hidden;
+}
+
+.tab button {
+    background-color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    color: var(--darkGrey);
+}
+
+.tab button.active {
+    color: var(--offerRed);
+}
+
+.tabcontent {
+    border-collapse: collapse;
+    display: none;
+    padding: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left; /* Align table content to the left by default */
+}
+
+/* Set width for each column */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 15%; /* Set width for the first column */
+}
+th:nth-child(2) {
+    width: 10%;
+}
+
+td:nth-child(2) {
+    color: var(--offerRedHover);
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 45%; /* Set width for the second column */
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 10%; /* Set width for the second column */
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+    width: 10%; /* Set width for the second column */
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+    width: 10%; /* Set width for the second column */
+}
