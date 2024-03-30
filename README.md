@@ -1,4 +1,4 @@
-# Stock Exchange Project
+# Stock Exchange Market Project
 
 ![Stock Exchange Logo](logo.png)
 
@@ -26,12 +26,12 @@ This project is a stock exchange system built with Node.js for the backend, HTML
 [![Demo Video](https://img.youtube.com/vi/woiGdMb9RiM/maxresdefault.jpg)](https://youtu.be/woiGdMb9RiM)
 *Click the image above to watch the demo video*
 
-Usage
+## Usage
 Visit the homepage to view the available stocks and place buy/sell orders.
 Explore the various features and functionalities provided by the stock exchange system.
 
-Contributing
+## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue to report bugs or suggest improvements.
 
-License
+## License
 This project is licensed under the MIT License.
