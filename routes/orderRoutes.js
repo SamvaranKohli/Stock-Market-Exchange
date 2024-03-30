@@ -13,5 +13,6 @@ router
 router
     .route('/:id')
     .get(orderController.getAllOrders)
+    .get(orderController.getAllOrders, orderController.getPositions)
 
 module.exports = router;

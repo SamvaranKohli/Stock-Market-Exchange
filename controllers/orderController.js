@@ -21,8 +21,6 @@ exports.updateOrder = async (order) => {
 
 exports.getAllOrders = async (req, res) => {
 
-    console.log('Hello');
-
     try{
         const orders = await Order.find({userID : req.params.id});
         res
@@ -63,3 +61,7 @@ exports.createNewOrder = async (req, res) => {
     }
 
 };
+
+exports.getPositions = async (req, res) => {
+    console.log(req.orders);
+}

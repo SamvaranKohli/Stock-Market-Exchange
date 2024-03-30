@@ -33,7 +33,7 @@
                 </div>
                 <div class="order-bottom">
                     <button id="order-complete-button" class="order-complete-button">BUY</button>
-                    <button class="cancel-button">CANCEL</button>
+                    <button class="cancel-button" onclick="closeOrderContainer()">CANCEL</button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <button class="tablinks" onclick="openTab(event, 'account')">ACCOUNT</button>
             </div>
             
-            <table id="orders" class="tabcontent">
+            <table id="orders" class="ordersTabContent tabcontent">
                 
                 <thead>
                     <tr>
@@ -60,15 +60,32 @@
                 <tbody id="table-body">
                 </tbody>
             </table>
+
+            <table id="positions" class="tabcontent">
+                
+                <thead>
+                    <tr>
+                        <th>Instrument</th>
+                        <th>Qty.</th>
+                        <th>Avg. Cost</th>
+                        <th>LTP.</th>
+                        <th>P&L</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
             
-            <div id="positions" class="tabcontent">
+            <!-- <div id="positions" class="tabcontent">
                 <h3>Tab 2 Content</h3>
                 <p>This is the content of tab 2.</p>
-            </div>
+            </div> -->
             
             <div id="account" class="tabcontent">
-                <button onclick="openLoginPage()">LOGIN</button>
+                <p>Hello</p>
             </div>
+
+            <p class="login-button">Please <a href="login.html">login</a> to see details</p>
         </div>
     </div>
 
@@ -123,7 +140,7 @@
         </div>
     </template>
 
-    <script src="https://127.0.0.1:4000/socket.io/socket.io.js"></script>
+    <script src="http://127.0.0.1:4000/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
     <!-- <script src="websocket-client.js"></script> -->
 </body>

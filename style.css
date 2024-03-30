@@ -258,6 +258,7 @@ body
     padding: 5px;
     font-size: 15px;
     background-color: white;
+    cursor: pointer;
 }
 
 .tab {
@@ -288,41 +289,51 @@ body
     padding: 20px;
 }
 
-th, td {
+/* .ordersTabContent {
+    border-collapse: collapse;
+    display: none;
+    padding: 20px;
+} */
+
+.ordersTabContent th, td {
     border: 1px solid #dddddd;
     padding: 8px;
-    text-align: left; /* Align table content to the left by default */
+    text-align: left; 
 }
 
-/* Set width for each column */
-th:nth-child(1),
-td:nth-child(1) {
-    width: 15%; /* Set width for the first column */
+.ordersTabContent th:nth-child(1),
+.ordersTabContent td:nth-child(1) {
+    width: 15%; 
 }
-th:nth-child(2) {
+.ordersTabContent th:nth-child(2) {
     width: 10%;
 }
 
-td:nth-child(2) {
+.ordersTabContent td:nth-child(2) {
     color: var(--offerRedHover);
 }
 
-th:nth-child(3),
-td:nth-child(3) {
-    width: 45%; /* Set width for the second column */
+.ordersTabContent th:nth-child(3),
+.ordersTabContent td:nth-child(3) {
+    width: 45%;
 }
 
-th:nth-child(4),
-td:nth-child(4) {
-    width: 10%; /* Set width for the second column */
+.ordersTabContent th:nth-child(4),
+.ordersTabContent td:nth-child(4) {
+    width: 10%; 
 }
 
-th:nth-child(5),
-td:nth-child(5) {
-    width: 10%; /* Set width for the second column */
+.ordersTabContent th:nth-child(5),
+.ordersTabContent td:nth-child(5) {
+    width: 10%; 
 }
 
-th:nth-child(6),
-td:nth-child(6) {
-    width: 10%; /* Set width for the second column */
+.ordersTabContent th:nth-child(6),
+.ordersTabContent td:nth-child(6) {
+    width: 10%; 
+}
+
+.login-button {
+    margin-left: 20px;
+    display: none;
 }

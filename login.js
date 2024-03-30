@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     console.log('Username:', email);
     console.log('Password:', password);
 
-    fetch('https://127.0.0.1:4000/api/v1/users/login', {
+    fetch('http://127.0.0.1:4000/api/v1/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,11 +15,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            //console.log('Success:', data);
+            window.location.href = 'index.html';
         })
         .catch((error) => {
-            console.error('Error:', error);
+            //console.error('Error:', error);
+            alert('Login failed. Please check your credentials and try again.');
         });
-
-    console.log(document.cookie);
 });

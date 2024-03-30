@@ -15,13 +15,7 @@ const createSendToken = (user, statusCode, req, res) => {
     res.cookie('jwt', token, {
       expires: new Date(
         Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-      ),
-      domain: undefined,
-      path: '/',
-      httpOnly: true,
-      secure:true, 
-      sameSite:'None',
-      credentials: 'include'
+      )    
     });
 
     res.once('finish', () => {
@@ -136,27 +130,30 @@ exports.protect = async (req, res, next) => {
 
 exports.isLoggedIn = async (req, res, next) => {
 
-  console.log('Hello : ', req.cookies.jwt);
-
     if (req.cookies.jwt) {
 
-      console.log('hello');
       try {
         const decoded = await promisify(jwt.verify)(
           req.cookies.jwt,
           process.env.JWT_SECRET
         );
+
+        console.log(decoded);
   
         const currentUser = await User.findById(decoded.id);
         if (!currentUser) {
           return next();
         }
+
+        console.log(currentUser);
   
-        if (currentUser.changedPasswordAfter(decoded.iat)) {
-          return next();
-        }
+        // if (currentUser.changedPasswordAfter(decoded.iat)) {
+        //   return next();
+        // }
   
         res.locals.user = currentUser;
+
+        console.log('user : ');
         return next();
       } catch (err) {
         return next();

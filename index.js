@@ -1,4 +1,6 @@
-const socket = io("https://127.0.0.1:4000");
+const socket = io("http://127.0.0.1:4000");
+let userData = undefined;
+let isLoggedIn = false;
 
 socket.on('update', (data) => {
   
@@ -11,6 +13,7 @@ socket.on('update', (data) => {
   });
 
 let stockId;
+let stockName;
 let transactionType;
 let stocksData = [];
 
@@ -61,8 +64,20 @@ function toggleOrderContainer() {
     var orderContainer = document.getElementById('order-container');
     var computedStyle = window.getComputedStyle(orderContainer);
 
+    var stockname = document.getElementById('order-top');
+    stockname.textContent = stockName;
+
     if (computedStyle.display === 'none') {
         orderContainer.style.display = 'block';
+    }
+}
+
+function closeOrderContainer() {
+    var orderContainer = document.getElementById('order-container');
+    var computedStyle = window.getComputedStyle(orderContainer);
+
+    if(computedStyle.display === 'block') {
+        orderContainer.style.display = 'none';
     }
 }
 
@@ -71,10 +86,17 @@ function openOrderContainer(infoDiv) {
     buttons.forEach(button => {
         button.addEventListener('click', function() {
             const parentDiv = this.closest('.stock');
+            const stockNameDiv = parentDiv.querySelector('.stock-name');
+
             stockId = parentDiv.id;
+            stockName = stockNameDiv.textContent;
             transactionType = button.id;
+
+            console.log(stockName);
+
             setOrderContainerStyle();
             toggleOrderContainer();
+
 
             if (parentDiv.id) {
                 console.log(parentDiv.id, " ", button.id);
@@ -95,8 +117,8 @@ function createOrder() {
 
         const data = {
             tradingSymbolId: stockId,
-            tradingSymbol: "RELIANCE",
-            userID: '65fd30918ff4ee22f50fb077',
+            tradingSymbol: stockName,
+            userID: userData._id,
             transactionType: transactionType,
             orderType: orderType,
             quantity: qty
@@ -108,7 +130,7 @@ function createOrder() {
             data.price = price;
         }
 
-        fetch('https://127.0.0.1:4000/api/v1/orders', {
+        fetch('http://127.0.0.1:4000/api/v1/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -117,6 +139,7 @@ function createOrder() {
         })
         .then(response => response.json())
         .then(data => {
+            closeOrderContainer();
             console.log('Success:', data);
         })
         .catch((error) => {
@@ -192,7 +215,7 @@ function UpdateClose(stockDiv, stock) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://127.0.0.1:4000/api/v1/stocks')
+    fetch('http://127.0.0.1:4000/api/v1/stocks')
         .then(response => response.json())
         .then(stocks => {
             const stockContainer = document.getElementById('stock-container');
@@ -220,10 +243,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const headerDiv = stockDiv.querySelector('.stock-header');
         headerDiv.setAttribute('onclick', `toggleMarketDepth('${stock._id}')`);
 
-        
 
         const depthDiv = stockDiv.querySelector('.market-depth');
-        //depthDiv.setAttribute('id', stock._id);
 
         createMarketDepthElement(stockDiv, stock);
         openOrderContainer(depthDiv);
@@ -253,12 +274,12 @@ const sampleData = [
 ];
 
 function fetchOrderData() {
-    fetch('https://127.0.0.1:4000/api/v1/orders/65fd30918ff4ee22f50fb077')
+    const orderURL = 'http://127.0.0.1:4000/api/v1/orders/' + userData._id;
+    fetch(orderURL)
         .then(response => response.json())
         .then(data => {
 
             orders = data.orders;
-
             formatOrderData(orders);
             
         })
@@ -272,7 +293,6 @@ function formatOrderData(orders) {
 
     orders.forEach((order) => {
 
-        console.log(order);
         const date = new Date(order.createdAt);
         const hours = String(date.getUTCHours()).padStart(2, '0');
         const minutes = String(date.getUTCMinutes()).padStart(2, '0');
@@ -316,40 +336,52 @@ function populateOrderTable() {
 }
 
 function openLoginPage() {
-    window.location.href = '/Frontend/login.html';
+    window.location.href = '/login.html';
 }
 
 async function checkUserLoggedIn() {
+
     try {
-        const response = await fetch('https://127.0.0.1:4000/api/v1/users/checkLoggedIn');
+        const response = await fetch('http://127.0.0.1:4000/api/v1/users/checkLoggedIn');
         const data = await response.json();
-        const isLoggedIn = data.isLoggedIn;
-        const userData = data.userData;
+        isLoggedIn = data.isLoggedIn;
+        userData = data.userData;
 
-        console.log(isLoggedIn);
-        console.log(userData);
-
-        // if (isLoggedIn) {
-        //     document.querySelectorAll('.tabcontent').forEach(tab => {
-        //         tab.style.display = 'block';
-        //     });
-
-        //     // if (userData) {
-        //     //     document.getElementById('username').innerText = userData.username;
-        //     // }
-
-        //     console.log(userData);
-        // } else {
-
+        if (isLoggedIn) {
             
+            const accountTab = document.getElementById('account');
+            accountTab.style.display = 'block';
+            accountTab.classList.add('active');
 
-        //     // document.querySelectorAll('.tabcontent').forEach(tab => {
-        //     //     tab.style.display = 'none';
-        //     // });
-        // }
+            fetchOrderData();
+        } else {
+
+            const loginButton = document.querySelector('.login-button');
+            loginButton.style.display = 'block';
+        }
+
     } catch (error) {
         console.error('Error checking user login status:', error);
     }
 }
 window.onload = checkUserLoggedIn;
-//fetchOrderData();
+
+
+function openTab(event, tabName) {
+
+    const tabcontents = document.querySelectorAll('.tabcontent');
+    tabcontents.forEach(tabcontent => {
+        tabcontent.style.display = 'none';
+    });
+
+    const tabLinks = document.querySelectorAll('.tablinks');
+    tabLinks.forEach(tabLink => {
+        tabLink.classList.remove('active');
+    });
+
+    if(isLoggedIn) {
+        const tab = document.getElementById(tabName);
+        tab.style.display = 'block';
+        event.currentTarget.classList.add('active');
+    }
+}

@@ -9,11 +9,13 @@ router.post('/login', authController.login);
 
 router.get('/checkLoggedIn', authController.isLoggedIn, (req, res) => {
 
-    console.log(req.cookies);
     const isLoggedIn = res.locals.user ? true : false;
     const userData = res.locals.user || null; 
     res.json({ isLoggedIn, userData });
+
 });
+
+router.get('')
 
 router
     .route('/')
