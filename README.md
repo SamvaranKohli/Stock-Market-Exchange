@@ -16,10 +16,8 @@ This project is a stock exchange system built with Node.js for the backend, HTML
 ## Screenshots
 
 ![Screenshot 1](images/image1.png)
-*Caption for Screenshot 1*
 
 ![Screenshot 2](images/image2.png)
-*Caption for Screenshot 2*
 
 ## Demo Video
 
