@@ -18,12 +18,12 @@ This project is a stock exchange system built with Node.js for the backend, HTML
 ![Screenshot 1](images/image1.png)
 *Caption for Screenshot 1*
 
-![Screenshot 2](images/screenshot2.png)
+![Screenshot 2](images/image2.png)
 *Caption for Screenshot 2*
 
 ## Demo Video
 
-[![Demo Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+[![Demo Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/woiGdMb9RiM)
 *Click the image above to watch the demo video*
 
 Usage
