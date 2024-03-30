@@ -270,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const sampleData = [
-    { time: '14:57:16', type: 'SELL', instrument: 'RELIANCE', quantity: '10', avg : 2197, status: 'COMPLETE'}
 ];
 
 function fetchOrderData() {
