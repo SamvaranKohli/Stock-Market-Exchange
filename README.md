@@ -23,7 +23,7 @@ This project is a stock exchange system built with Node.js for the backend, HTML
 
 ## Demo Video
 
-[![Demo Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/woiGdMb9RiM)
+[![Demo Video](https://img.youtube.com/vi/woiGdMb9RiM/maxresdefault.jpg)](https://youtu.be/woiGdMb9RiM)
 *Click the image above to watch the demo video*
 
 Usage
